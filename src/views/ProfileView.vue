@@ -4,6 +4,6 @@ import { NH2 } from 'naive-ui'
 
 <template>
   <div>
-    <n-h2>信息查询页</n-h2>
+    <n-h2>用户资料</n-h2>
   </div>
 </template>

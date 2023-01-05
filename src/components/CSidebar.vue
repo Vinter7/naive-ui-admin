@@ -1,7 +1,7 @@
 <script setup>
 import { NIcon, NMenu, NButton, NAvatar, NSpace } from 'naive-ui'
 import { h, ref } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
+import { RouterLink, useRouter, useRoute } from 'vue-router'
 import {
   BarChart,
   PieChart,
@@ -16,7 +16,6 @@ import {
 
 function home() {
   router.push('/admin')
-  selected.value = 'analysis'
   menuRef.value?.showOption('analysis')
 }
 
@@ -30,8 +29,8 @@ function labelTo(path, name) {
 
 const props = defineProps(['collapsed'])
 const router = useRouter()
+
 const menuRef = ref(null)
-const selected = ref('analysis')
 const menuOptions = [
   {
     label: '仪表盘',
@@ -78,8 +77,8 @@ const menuOptions = [
         icon: renderIcon(Key),
       },
       {
-        label: labelTo('info', '信息查询'),
-        key: 'info',
+        label: labelTo('profile', '用户资料'),
+        key: 'profile',
         icon: renderIcon(PersonCircle),
       },
     ],
@@ -94,7 +93,7 @@ const menuOptions = [
   </div>
   <n-menu
     ref="menuRef"
-    v-model:value="selected"
+    :value="useRoute().path.split('/').pop()"
     :collapsed-width="72"
     class="menu"
     :options="menuOptions"

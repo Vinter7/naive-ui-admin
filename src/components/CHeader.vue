@@ -10,19 +10,25 @@ import {
   NDrawerContent,
   NCard,
   NSkeleton,
+  NDropdown,
+  useMessage,
+  useDialog,
 } from 'naive-ui'
-
+import { useLoginStore } from '@/stores/login'
 import {
   LogoGithub,
   Sunny,
   Moon,
   Notifications,
+  LogOut,
+  PersonCircle,
 } from '@vicons/ionicons5'
 
 import CBreadcrumb from './CBreadcrumb.vue'
 
 import { useDarkStore } from '@/stores/darkmode'
-import { ref, reactive } from 'vue'
+import { h, ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
 function goGithub() {
   window.open('https://github.com/Vinter7')
@@ -34,13 +40,45 @@ function noti() {
     loading.value = false
   }, 1000)
 }
-function closeCard(index) {
-  msg.splice(index, 1)
+function renderIcon(icon) {
+  return () => h(NIcon, null, { default: () => h(icon) })
 }
-
+function select(key) {
+  if (key == 'profile') {
+    return router.push('/admin/profile')
+  } else if (key == 'logout') {
+    dialog.info({
+      title: '提示',
+      content: '您确定要退出登录吗？',
+      positiveText: '确定',
+      negativeText: '取消',
+      onPositiveClick: () => {
+        let loginStore = useLoginStore()
+        loginStore.islogin = false
+        router.push('/login')
+        message.success('退出登录')
+      },
+    })
+  }
+}
+const message = useMessage()
+const dialog = useDialog()
+const router = useRouter()
 const active = ref(false)
 const loading = ref(true)
 const dark = useDarkStore()
+const options = [
+  {
+    label: '用户资料',
+    key: 'profile',
+    icon: renderIcon(PersonCircle),
+  },
+  {
+    label: '退出登录',
+    key: 'logout',
+    icon: renderIcon(LogOut),
+  },
+]
 const msg = reactive([
   [
     false,
@@ -101,13 +139,14 @@ const msg = reactive([
         </template>
         消息通知
       </n-tooltip>
-
       <div class="user">
-        <n-avatar
-          round
-          size="medium"
-          src="https://cdn.staticaly.com/gh/Vinter7/img_storage@master/profile/ProfilePhoto.1pdcnpolxli8.webp"
-        />
+        <n-dropdown @select="select" :options="options">
+          <n-avatar
+            round
+            size="medium"
+            src="https://cdn.staticaly.com/gh/Vinter7/img_storage@master/profile/ProfilePhoto.1pdcnpolxli8.webp"
+          />
+        </n-dropdown>
       </div>
     </NSpace>
   </NSpace>
@@ -152,6 +191,7 @@ const msg = reactive([
   position: relative;
   top: -5px;
   padding-left: 20px;
+  /* background-color: pink; */
 }
 .card {
   width: 252px;

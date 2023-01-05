@@ -9,6 +9,7 @@ import {
   Key,
   PersonCircle,
   AppsSharp,
+  AlertCircle,
 } from '@vicons/ionicons5'
 
 import {
@@ -25,7 +26,10 @@ function labelTo(path, name) {
   return () => h(RouterLink, { to: path }, { default: () => name })
 }
 
-const route = computed(() => useRoute().path.split('/').pop())
+const breadItem = computed(() => {
+  const r = useRoute().path.split('/').pop()
+  return map[r] ?? map.error
+})
 const options = [
   [
     { label: labelTo('analysis', '数据面板'), key: 'analysis' },
@@ -46,23 +50,24 @@ const map = {
   table: [options[1], ExtensionPuzzle, '组件示例', AppsSharp, '表格'],
   form: [options[1], ExtensionPuzzle, '组件示例', Clipboard, '表单'],
   authority: [options[2], People, '用户管理', Key, '权限管理'],
-  info: [options[2], People, '用户管理', PersonCircle, '信息查询'],
+  profile: [options[2], People, '用户管理', PersonCircle, '用户资料'],
+  error: [[], AlertCircle, '页面未找到'],
 }
 </script>
 
 <template>
   <n-breadcrumb>
     <NBreadcrumbItem>
-      <n-dropdown :options="map[route][0]">
+      <n-dropdown :options="breadItem[0]">
         <div>
-          <n-icon :component="map[route][1]" />
-          {{ map[route][2] }}
+          <n-icon :component="breadItem[1]" />
+          {{ breadItem[2] }}
         </div>
       </n-dropdown>
     </NBreadcrumbItem>
-    <NBreadcrumbItem>
-      <n-icon :component="map[route][3]" />
-      {{ map[route][4] }}
+    <NBreadcrumbItem v-if="breadItem[3]">
+      <n-icon :component="breadItem[3]" />
+      {{ breadItem[4] }}
     </NBreadcrumbItem>
   </n-breadcrumb>
 </template>

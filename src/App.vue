@@ -1,5 +1,10 @@
 <script setup>
-import { darkTheme, NConfigProvider } from 'naive-ui'
+import {
+  darkTheme,
+  NConfigProvider,
+  NMessageProvider,
+  NDialogProvider,
+} from 'naive-ui'
 import { useDarkStore } from '@/stores/darkmode'
 import { computed } from 'vue'
 
@@ -10,6 +15,10 @@ const dark = computed(() =>
 
 <template>
   <n-config-provider :theme="dark">
-    <router-view></router-view>
+    <n-dialog-provider>
+      <n-message-provider>
+        <router-view></router-view>
+      </n-message-provider>
+    </n-dialog-provider>
   </n-config-provider>
 </template>

@@ -13,7 +13,7 @@
 - [x] Avatar
 - [x] Space
 - [x] Breadcrumb, BreadcrumbItem
-- [x] Dropdown
+- [x] Dropdown 下拉菜单
 - [x] Tooltip
 - [x] Drawer DrawerContent
 - [x] NCard

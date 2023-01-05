@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useLoginStore } from '@/stores/login'
 import HomeView from '@/views/HomeView.vue'
+import LoginView from '@/views/LoginView.vue'
 import TestView from '@/views/TestView.vue'
 import AnalysisView from '@/views/AnalysisView.vue'
+import ErrorView from '@/views/ErrorView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -41,8 +44,12 @@ const router = createRouter({
           component: () => import('@/views/AuthorityView.vue'),
         },
         {
-          path: 'info',
-          component: () => import('@/views/InfoView.vue'),
+          path: 'profile',
+          component: () => import('@/views/ProfileView.vue'),
+        },
+        {
+          path: ':pathMatch(.*)*',
+          component: ErrorView,
         },
       ],
     },
@@ -51,7 +58,21 @@ const router = createRouter({
       name: 'test',
       component: TestView,
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView,
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: () => import('@/views/NotFoundView.vue'),
+    },
   ],
+})
+
+router.beforeEach((to, from) => {
+  const { islogin } = useLoginStore()
+  if (!islogin && to.name !== 'login') return { name: 'login' }
 })
 
 export default router
