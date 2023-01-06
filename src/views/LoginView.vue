@@ -1,21 +1,19 @@
 <script setup>
-import { useLoginStore } from '@/stores/login'
-import { useRouter } from 'vue-router'
-import { NCard } from 'naive-ui'
-let loginStore = useLoginStore()
-const router = useRouter()
-function login() {
-  // console.log(islogin)
-  loginStore.islogin = true
-  router.push('/admin')
-}
+import { NCard, NH1 } from 'naive-ui'
 </script>
 
 <template>
   <div class="whole">
-    <NCard class="card" title="登录">
-      <h1>登录页</h1>
-      <button @click="login">登录</button>
+    <NCard class="card">
+      <template #header>
+        <img class="logo" src="/logo.svg" alt="logo" />
+      </template>
+      <template #header-extra>
+        <n-h1>后台管理系统</n-h1>
+      </template>
+      <template #default>
+        <router-view></router-view>
+      </template>
     </NCard>
   </div>
 </template>
@@ -31,9 +29,13 @@ function login() {
 }
 .card {
   width: 400px;
-  height: 600px;
   margin: auto;
   position: relative;
-  top: 60px;
+  top: 100px;
+}
+.logo {
+  position: relative;
+  width: 60px;
+  top: -5px;
 }
 </style>

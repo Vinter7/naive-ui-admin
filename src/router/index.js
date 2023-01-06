@@ -5,6 +5,7 @@ import LoginView from '@/views/LoginView.vue'
 import TestView from '@/views/TestView.vue'
 import AnalysisView from '@/views/AnalysisView.vue'
 import ErrorView from '@/views/ErrorView.vue'
+import CSignin from '@/components/CSignin.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -62,6 +63,23 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView,
+      children: [
+        {
+          path: '',
+          name: 'login',
+          redirect: { name: 'signin' },
+        },
+        {
+          path: 'signin',
+          name: 'signin',
+          component: CSignin,
+        },
+        {
+          path: 'reset',
+          name: 'reset',
+          component: () => import('@/components/CReset.vue'),
+        },
+      ],
     },
     {
       path: '/:pathMatch(.*)*',
@@ -72,7 +90,9 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
   const { islogin } = useLoginStore()
-  if (!islogin && to.name !== 'login') return { name: 'login' }
+
+  if (!islogin && to.path.split('/')[1] !== 'login')
+    return { name: 'signin' }
 })
 
 export default router
