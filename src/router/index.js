@@ -79,6 +79,11 @@ const router = createRouter({
           name: 'reset',
           component: () => import('@/components/CReset.vue'),
         },
+        {
+          path: 'byphone',
+          name: 'byphone',
+          component: () => import('@/components/CByPhone.vue'),
+        },
       ],
     },
     {

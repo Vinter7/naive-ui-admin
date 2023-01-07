@@ -1,6 +1,5 @@
 <script setup>
 import { ref, reactive } from 'vue'
-import { useLoginStore } from '@/stores/login'
 import { useRouter } from 'vue-router'
 import {
   NSpace,
@@ -13,19 +12,24 @@ import {
 
 function reset() {
   statuses.splice(0, statuses.length - 1)
+  const { phone, code, pwd1, pwd2 } = form
   let pass = 0
-  if (!form.phone.match(/^(13[0-9]|14[5|7]|15[0-9]|18[0-9])\d{8}$/)) {
+  if (!phone.match(/^(13[0-9]|14[5|7]|15[0-9]|18[0-9])\d{8}$/)) {
     statuses[0] = 'error'
     pass += 1
   }
-  if (!form.code.match(/\d{6}/)) {
+  if (code === '') {
     statuses[1] = 'warning'
+    pass += 1
+  } else if (!code.match(/\d{6}/)) {
+    statuses[1] = 'error'
+    pass += 1
   }
-  if (!form.pwd1.match(/^[a-zA-Z]\w{5,17}$/)) {
+  if (!pwd1.match(/^[a-zA-Z]\w{5,17}$/)) {
     statuses[2] = 'error'
     pass += 1
   }
-  if (form.pwd2 === '' || form.pwd2 !== form.pwd1) {
+  if (pwd2 === '' || pwd2 !== pwd1) {
     statuses[3] = 'error'
     pass += 1
   }
@@ -45,7 +49,6 @@ const form = reactive({
 })
 const statuses = reactive([])
 const getting = ref(false)
-let loginStore = useLoginStore()
 const router = useRouter()
 const message = useMessage()
 </script>
@@ -107,7 +110,7 @@ const message = useMessage()
         style="width: 100%"
         round
       >
-        取消
+        返回
       </n-button>
     </n-space>
   </n-space>

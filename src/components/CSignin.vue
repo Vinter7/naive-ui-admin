@@ -76,7 +76,9 @@ const password = ref('password')
       </n-button>
     </n-form-item>
     <n-space justify="space-between">
-      <n-button class="bu"> 手机验证码登录 </n-button>
+      <n-button @click="router.push('byphone')" class="bu">
+        手机验证码登录
+      </n-button>
       <n-button class="bu"> 注册 </n-button>
     </n-space>
   </n-form>
