@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import {
   NSpace,
   NInput,
@@ -8,6 +8,7 @@ import {
   NButton,
   useMessage,
   NCountdown,
+  useLoadingBar,
 } from 'naive-ui'
 
 function reset() {
@@ -34,7 +35,7 @@ function reset() {
     pass += 1
   }
   if (!pass) {
-    message.success('修改成功')
+    message.success(isRegister ? '注册成功' : '修改成功')
     loadingBar.start()
     setTimeout(() => {
       router.push('signin')
@@ -54,10 +55,13 @@ const form = reactive({
 const statuses = reactive([])
 const getting = ref(false)
 const router = useRouter()
+const route = useRoute()
 const message = useMessage()
+const loadingBar = useLoadingBar()
+const isRegister = route.name === 'register'
 </script>
 <template>
-  <n-h2>重置密码</n-h2>
+  <n-h2>{{ isRegister ? '用户注册' : '重置密码' }}</n-h2>
   <n-space vertical :size="30">
     <n-input
       v-model:value="form.phone"
@@ -85,7 +89,7 @@ const message = useMessage()
       </n-button>
     </n-space>
     <n-input
-      placeholder="新的密码"
+      :placeholder="isRegister ? '密码' : '新的密码'"
       show-password-on="mousedown"
       type="password"
       :maxlength="18"

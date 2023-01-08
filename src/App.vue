@@ -4,6 +4,7 @@ import {
   NConfigProvider,
   NMessageProvider,
   NDialogProvider,
+  NLoadingBarProvider,
 } from 'naive-ui'
 import { useDarkStore } from '@/stores/darkmode'
 import { computed } from 'vue'
@@ -15,10 +16,12 @@ const dark = computed(() =>
 
 <template>
   <n-config-provider :theme="dark">
-    <n-dialog-provider>
-      <n-message-provider>
-        <router-view></router-view>
-      </n-message-provider>
-    </n-dialog-provider>
+    <n-loading-bar-provider>
+      <n-dialog-provider>
+        <n-message-provider>
+          <router-view></router-view>
+        </n-message-provider>
+      </n-dialog-provider>
+    </n-loading-bar-provider>
   </n-config-provider>
 </template>

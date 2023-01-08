@@ -26,6 +26,7 @@ const router = createRouter({
         },
         {
           path: 'analysis',
+          name: 'analysis',
           component: AnalysisView,
         },
         {
@@ -77,7 +78,12 @@ const router = createRouter({
         {
           path: 'reset',
           name: 'reset',
-          component: () => import('@/components/CReset.vue'),
+          component: () => import('@/components/CRegister.vue'),
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: () => import('@/components/CRegister.vue'),
         },
         {
           path: 'byphone',

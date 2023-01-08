@@ -11,6 +11,7 @@ import {
   NButton,
   useMessage,
   NSpace,
+  useLoadingBar,
 } from 'naive-ui'
 
 let loginStore = useLoginStore()
@@ -21,21 +22,21 @@ function signin() {
     password.value === 'password'
   ) {
     loginStore.islogin = true
-    router.push('/admin')
     message.success('登录成功')
+    loadingBar.start()
+    setTimeout(() => {
+      router.push('/admin')
+      loadingBar.finish()
+    }, 1300)
   } else {
     message.error('用户名或密码不正确')
   }
 }
 
-function reset() {
-  console.log('重置密码')
-  router.push('/login/reset')
-}
-
 const formRef = ref(null)
 const checkValue = ref(true)
 const message = useMessage()
+const loadingBar = useLoadingBar()
 const username = ref('username')
 const password = ref('password')
 </script>
@@ -79,7 +80,9 @@ const password = ref('password')
       <n-button @click="router.push('byphone')" class="bu">
         手机验证码登录
       </n-button>
-      <n-button class="bu"> 注册 </n-button>
+      <n-button @click="router.push('register')" class="bu">
+        注册
+      </n-button>
     </n-space>
   </n-form>
 </template>
