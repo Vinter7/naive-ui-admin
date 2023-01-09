@@ -1,0 +1,12 @@
+.flx {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.hmax {
+  height: 100%;
+}

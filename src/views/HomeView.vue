@@ -1,7 +1,7 @@
 <script setup>
-import CLayout from '@/components/CLayout.vue'
-import CSidebar from '@/components/CSidebar.vue'
-import CHeader from '@/components/CHeader.vue'
+import CLayout from '@/components/layout/CLayout.vue'
+import CSidebar from '@/components/layout/CSidebar.vue'
+import CHeader from '@/components/layout/CHeader.vue'
 </script>
 
 <template>

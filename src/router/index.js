@@ -5,7 +5,7 @@ import LoginView from '@/views/LoginView.vue'
 import TestView from '@/views/TestView.vue'
 import AnalysisView from '@/views/AnalysisView.vue'
 import ErrorView from '@/views/ErrorView.vue'
-import CSignin from '@/components/CSignin.vue'
+import CSignin from '@/components/login/CSignin.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -78,17 +78,17 @@ const router = createRouter({
         {
           path: 'reset',
           name: 'reset',
-          component: () => import('@/components/CRegister.vue'),
+          component: () => import('@/components/login/CRegister.vue'),
         },
         {
           path: 'register',
           name: 'register',
-          component: () => import('@/components/CRegister.vue'),
+          component: () => import('@/components/login/CRegister.vue'),
         },
         {
           path: 'byphone',
           name: 'byphone',
-          component: () => import('@/components/CByPhone.vue'),
+          component: () => import('@/components/login/CByPhone.vue'),
         },
       ],
     },
