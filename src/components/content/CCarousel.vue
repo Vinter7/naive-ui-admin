@@ -31,6 +31,7 @@ import { NCarousel } from 'naive-ui'
 <style scoped>
 .carousel-img {
   width: 100%;
-  /* height: 373px; */
+  height: 373px;
+  object-fit: cover;
 }
 </style>

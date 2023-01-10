@@ -30,9 +30,6 @@ import { useDarkStore } from '@/stores/darkmode'
 import { h, ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
-function goGithub() {
-  window.open('https://github.com/Vinter7')
-}
 function noti() {
   loading.value = true
   active.value = true
@@ -109,7 +106,14 @@ const msg = reactive([
   <NSpace justify="space-between">
     <CBreadcrumb />
     <NSpace size="large">
-      <NButton :focusable="false" text class="px24" @click="goGithub">
+      <NButton
+        :focusable="false"
+        text
+        class="px24"
+        tag="a"
+        target="_blank"
+        href="https://github.com/Vinter7/naive-ui-admin"
+      >
         <NIcon>
           <LogoGithub />
         </NIcon>

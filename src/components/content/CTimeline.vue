@@ -3,7 +3,7 @@ import { NCard, NTimeline, NTimelineItem } from 'naive-ui'
 </script>
 
 <template>
-  <NCard title="时间线" :bordered="false">
+  <NCard embedded title="时间线" :bordered="false">
     <n-timeline>
       <n-timeline-item content="开始" />
       <n-timeline-item

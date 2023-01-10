@@ -16,7 +16,7 @@ import { ref } from 'vue'
 </script>
 
 <template>
-  <NCard :bordered="false">
+  <NCard embedded :bordered="false">
     <NSpace justify="space-between">
       <n-statistic label="访问量">
         <template #prefix>

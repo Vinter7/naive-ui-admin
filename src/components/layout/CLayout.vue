@@ -32,7 +32,7 @@ const collapsed = ref(false)
       <n-layout-content
         position="absolute"
         :native-scrollbar="false"
-        style="top: 60px; padding: 24px"
+        style="top: 60px; padding: 24px 24px 0"
       >
         <slot>
           <n-h2 v-for="i in 30">{{ i }}.内容</n-h2>
