@@ -27,7 +27,7 @@ import { NCard, NButton, NGrid, NGi, NGradientText } from 'naive-ui'
       <n-gi>
         <n-card hoverable :bordered="false">
           <template #header>
-            <n-gradient-text type="info">My Blog</n-gradient-text>
+            <n-gradient-text>My Blog</n-gradient-text>
           </template>
           基于 VuePress 的个人博客站点，用于记录我的技术生活，支持 Vue
           组件，可以将一些小项目嵌入其中，进行展示
@@ -36,7 +36,7 @@ import { NCard, NButton, NGrid, NGi, NGradientText } from 'naive-ui'
       <n-gi>
         <n-card hoverable :bordered="false">
           <template #header>
-            <n-gradient-text type="warning">My Note</n-gradient-text>
+            <n-gradient-text>My Note</n-gradient-text>
           </template>
           基于 VitePress
           的静态文档站点，用于记录和查阅我的笔记、示例代码等，使用
@@ -46,7 +46,7 @@ import { NCard, NButton, NGrid, NGi, NGradientText } from 'naive-ui'
       <n-gi>
         <n-card hoverable :bordered="false">
           <template #header>
-            <n-gradient-text type="error">My Games</n-gradient-text>
+            <n-gradient-text type="info">My Games</n-gradient-text>
           </template>
           基于 Vue 框架
           的网页游戏，在有趣的同时练习写程序逻辑的熟练度，目前已仿写了扫雷、2048、键盘钢琴、羊了个羊等
@@ -55,7 +55,9 @@ import { NCard, NButton, NGrid, NGi, NGradientText } from 'naive-ui'
       <n-gi>
         <n-card hoverable :bordered="false">
           <template #header>
-            <n-gradient-text>Yarn Manage</n-gradient-text>
+            <n-gradient-text type="warning">
+              Manage App
+            </n-gradient-text>
           </template>
           基于 React Native
           框架的纬编针织机器人自动化生产线接线管理App，来自纵向课题，解决企业应用中人工介入接线的问题
@@ -64,7 +66,9 @@ import { NCard, NButton, NGrid, NGi, NGradientText } from 'naive-ui'
       <n-gi>
         <n-card hoverable :bordered="false">
           <template #header>
-            <n-gradient-text>Self-service Store</n-gradient-text>
+            <n-gradient-text type="error">
+              Self-service Store
+            </n-gradient-text>
           </template>
           基于机器视觉的自动水果售卖项目的前后端应用，题目来自研究生电子设计竞赛，后端基于
           Express 框架，前端基于小程序组件开发
